@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 
@@ -6,8 +7,11 @@ from .models import Question, Answer
 
 
 def index(request):
+    page = request.GET.get('page', '1')  # 페이지
     question_list = Question.objects.order_by('-create_date')
-    context = {'question_list': question_list}
+    paginator = Paginator(question_list, 10)
+    page_obj = paginator.get_page(page)
+    context = {'question_list': page_obj}
     return render(request, 'pybo/question_list.html', context)
 
 
@@ -28,7 +32,7 @@ def question_create(request):
     if request.method == 'POST':
         form = QuestionForm(request.POST)
         if form.is_valid():
-            question = form.save(commit=False) # commit = False 는 임시 저장을 의미
+            question = form.save(commit=False)  # commit = False 는 임시 저장을 의미
             question.create_date = timezone.now()
             question.save()
             return redirect('pybo:index')
