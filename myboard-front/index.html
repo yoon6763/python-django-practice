@@ -10,13 +10,15 @@
 </head>
 <body>
 
-    <div class="login-form">
-        <form>
-            <input id = "tfUsername" type="text" name="username" class="text-field" placeholder="아이디">
-            <input id = "tfPassword" type="text" name="password" class="text-field" placeholder="비밀번호">
-            <input id = "btnLogin" type="submit" value="로그인" class="submit-btn">
-        </form>
-    </div>
-    <script src="script.js"></script>
+<div class="login-form">
+    <h1 class="text-title-center">로그인</h1>
+    <form>
+        <input id="tfUsername" type="text" name="username" class="text-field" placeholder="아이디">
+        <input id="tfPassword" type="text" name="password" class="text-field" placeholder="비밀번호">
+    </form>
+    <button id="btnLogin" class="btn-default" type="button">로그인</button>
+    <button id="btnGotoRegister" class="btn-default" type="button"><a class="btn-default" href="register.html">회원가입</a></button>
+</div>
+<script src="login.js"></script>
 </body>
 </html>
