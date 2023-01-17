@@ -1,4 +1,4 @@
-let BASE_URL = "http://192.168.1.147:8000/";
+let BASE_URL = "http://43.201.124.44:8000/";
 
 document.getElementById('btnRegister')
     .addEventListener('click', function () {

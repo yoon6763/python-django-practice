@@ -1,4 +1,4 @@
-let BASE_URL = "http://192.168.1.147:8000/";
+let BASE_URL = "http://43.201.124.44:8000/";
 
 // id 로 버튼 찾기
 let btnLogin = document.getElementById('btnLogin');
@@ -32,8 +32,13 @@ btnLogin.addEventListener('click', function () {
         .then((response) => response.json())
         // data <= response.json() 으로 파싱된 값
         .then((data) => {
-            // TODO - 받아온 데이터로 로직처리
             console.log(data)
+            // TODO token을 쿠키/캐시에 저장
+
+            // TODO token을 localStorage에 저장
+            localStorage.setItem('token', data.token);
+            // 페이지 이동
+            location.href = "board.html";
         })
         .catch((error) => {
             // 에러 시 로그에 출력하는 부분
