@@ -10,9 +10,6 @@ class Post(models.Model):
     author = models.ForeignKey(User,
                                on_delete=models.CASCADE,
                                related_name='posts')
-    profile = models.ForeignKey(Profile,
-                                on_delete=models.CASCADE,
-                                blank=True)
     title = models.CharField(max_length=128)
     category = models.CharField(max_length=128)
     body = models.TextField()
@@ -23,6 +20,5 @@ class Post(models.Model):
 
 class Comment(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)
     text = models.TextField()
