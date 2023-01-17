@@ -8,7 +8,6 @@ from rest_framework.response import Response
 from posts.models import Post, Comment
 from posts.permissions import CustomReadOnly
 from posts.serializers import PostSerializer, PostCreateSerializer, CommentSerializer, CommentCreateSerializer
-from users.models import Profile
 
 
 class PostViewSet(viewsets.ModelViewSet):
@@ -23,8 +22,7 @@ class PostViewSet(viewsets.ModelViewSet):
         return PostCreateSerializer
 
     def perform_create(self, serializer):
-        profile = Profile.objects.get(user=self.request.user)
-        serializer.save(author=self.request.user, profile=profile)
+        serializer.save(author=self.request.user)
 
 
 @api_view(['GET'])
@@ -53,5 +51,4 @@ class CommentViewSet(viewsets.ModelViewSet):
         return CommentCreateSerializer
 
     def perform_create(self, serializer):
-        profile = Profile.objects.get(user=self.request.user)
-        serializer.save(author=self.request.user, profile=profile)
+        serializer.save(author=self.request.user)
