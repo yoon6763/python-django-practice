@@ -1,15 +1,15 @@
 from rest_framework import serializers
 
 from posts.models import Post, Comment
-from users.serializers import ProfileSerializer
+from users.serializers import UserSerializer
 
 
 class CommentSerializer(serializers.ModelSerializer):
-    profile = ProfileSerializer(read_only=True)
+    author = UserSerializer(read_only=True)
 
     class Meta:
         model = Comment
-        fields = ("pk", "profile", "post", "text")
+        fields = ("pk", "author", "post", "text")
 
 
 class CommentCreateSerializer(serializers.ModelSerializer):
@@ -19,12 +19,12 @@ class CommentCreateSerializer(serializers.ModelSerializer):
 
 
 class PostSerializer(serializers.ModelSerializer):
-    profile = ProfileSerializer(read_only=True)  # nested Serializer
+    author = UserSerializer(read_only=True)  # nested Serializer
     comments = CommentSerializer(many=True, read_only=True)
 
     class Meta:
         model = Post
-        fields = ("pk", "profile", "title", "body", "image", "published_date", "likes", "comments")
+        fields = ("pk", "author", "title", "body", "image", "published_date", "likes", "comments")
 
 
 class PostCreateSerializer(serializers.ModelSerializer):

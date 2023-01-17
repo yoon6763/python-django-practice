@@ -2,8 +2,7 @@ from django.contrib.auth.models import User
 from rest_framework import generics, status
 from rest_framework.response import Response
 
-from users.models import Profile
-from users.serializers import RegisterSerializer, LoginSerializer, ProfileSerializer
+from users.serializers import RegisterSerializer, LoginSerializer, UserSerializer
 
 
 # Create your views here.
@@ -23,6 +22,6 @@ class LoginView(generics.GenericAPIView):
         return Response({"token": token.key}, status=status.HTTP_200_OK)
 
 
-class ProfileView(generics.RetrieveUpdateAPIView):
-    queryset = Profile.objects.all()
-    serializer_class = ProfileSerializer
+class UserView(generics.RetrieveUpdateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
